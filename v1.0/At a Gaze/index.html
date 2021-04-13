@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="main.js"></script>
+    </head>
+
+    <body onload="onload()">
+        <div class ="classHeading">
+            <div id="divCalendarAndWeather">
+                <p id="pCal"></p>
+                <p id="pSeparator">|</p>
+                <img id="imgWeatherIcon" xui-src="'xui://resource/default/weather/%s.svg' | inject weather.now.condition.code" />
+                <p id ="pTemp"> {weather.now.temperature.current}&deg;{weather.units.temperature}</p>
+            </div>
+
+            <div id="divEvent">
+                <p id="pEvent"></p>
+                <p id="pEventTime"></p>
+            </div>
+        </div>
+
+        <div class ="classSubheading">
+            <div id ="divSubheading">
+                <img id="imgSubheading"/>
+                <p id="pSubheading"></p>
+
+                <div id="divSubheadingWeather">
+                    <p id="pSeparatorSubheading">|</p>
+                    <img id="imgWeatherIconSubheading" xui-src="'xui://resource/default/weather/%s.svg' | inject weather.now.condition.code" />
+                    <p id ="pTempSubheading"> {weather.now.temperature.current}&deg;{weather.units.temperature}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
