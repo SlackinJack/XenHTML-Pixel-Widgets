@@ -1,6 +1,11 @@
 {
     "name": "PixelLS",
     "author": "Slackin' Jack#0001",
+	"size": {
+        "max-width": "390px",
+        "width": "100%",
+        "height": "150px"
+    },
     "options": [
         {
             "type": "title",
@@ -23,6 +28,12 @@
             "default": true,
             "key": "shouldAbbreviateMonth",
             "text": "Abbreviate Months"
+        },
+        {
+            "type": "switch",
+            "default": true,
+            "key": "shouldAddLeadingZeroToHours",
+            "text": "Add A Leading Zero To Hours"
         }
     ]
 }
