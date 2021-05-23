@@ -246,7 +246,7 @@ function updateDefault() {
                         break;
                 }
 
-                stringSubheading = truncateStringToLength(dataMusicLatest.nowPlaying.artist + ' - ' + dataMusicLatest.nowPlaying.title, 45, true);
+                stringSubheading = truncateStringToLength(dataMusicLatest.nowPlaying.artist + ' - ' + dataMusicLatest.nowPlaying.title, 40, true);
             }
         }
     }
