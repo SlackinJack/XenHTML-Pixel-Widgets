@@ -84,6 +84,32 @@
             "default": true,
             "key": "shouldAddLeadingZeroToHours",
             "text": "Add A Leading Zero To Hours"
+        },
+        {
+            "type": "title",
+            "text": "App ID Overrides"
+        },
+        {
+            "type": "text",
+            "default": "com.apple.mobilecal",
+            "key": "stringOverrideCalendarAppID",
+            "text": "Calendar"
+        },
+        {
+            "type": "text",
+            "default": "com.apple.reminders",
+            "key": "stringOverrideRemindersAppID",
+            "text": "Reminders"
+        },
+        {
+            "type": "text",
+            "default": "com.apple.weather",
+            "key": "stringOverrideWeatherAppID",
+            "text": "Weather"
+        },
+        {
+            "type": "comment",
+            "text": "Change to your app bundle ID of choice. Best left on default values."
         }
     ]
 }

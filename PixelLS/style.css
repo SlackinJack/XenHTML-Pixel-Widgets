@@ -13,7 +13,7 @@ body {
     grid-template-rows: 128px 32px;
 }
 
-#imgWeatherIconSubheading, #pTempSubheading, #pSubheading, #pClock {
+#pClock, #pSubheading, #divSubheadingWeather, #imgWeatherIconSubheading, #pTempSubheading{
     display: inline-block;
 }
 

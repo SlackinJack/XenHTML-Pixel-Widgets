@@ -1,7 +1,3 @@
-// Integers
-let intTimeRange;
-let intUpdateFreq;
-
 // Booleans
 let shouldAbbreviateMonth;
 let shouldAddLeadingZeroToHours;
@@ -14,21 +10,28 @@ let shouldShowTimeUntilEvent;
 let shouldUse24HourClock;
 
 // Data
-let dataReminderLatest = null;
 let dataCalendarLatest = null;
 let dataMusicLatest = null;
-let dataCurrentAppIdentifierHeading = 'com.apple.mobilecal';
-let dataCurrentAppIdentifierSubheading = 'com.apple.mobilecal';
+let dataReminderLatest = null;
+
+// Integers
+let intTimeRange;
+let intUpdateFreq;
+
+// Strings
+let stringCalendarAppIdentifier;
+let stringRemindersAppIdentifier;
+let stringWeatherAppIdentifier;
+let stringCurrentAppIdentifierHeading;
+let stringCurrentAppIdentifierSubheading;
 
 // Constants
-const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const imgCalAsset = 'assets/cal.png';
-const idCal = 'com.apple.mobilecal';
-const imgPlayingAsset = 'assets/playing.png';
 const imgMusicAsset = 'assets/music.png';
+const imgPlayingAsset = 'assets/playing.png';
 const imgReminderAsset = 'assets/reminder.png';
-const idReminder = 'com.apple.reminders';
 const imgSpotifyAsset = 'assets/spotify.png';
 const imgYoutubeAsset = 'assets/youtube.png';
 const imgYoutubeMusicAsset = 'assets/youtubemusic.png';
@@ -57,16 +60,16 @@ function onLoad() {
 }
 
 function onHeadingClick() {
-    api.apps.launchApplication(dataCurrentAppIdentifierHeading);
+    api.apps.launchApplication(stringCurrentAppIdentifierHeading);
 }
 
 function onSubheadingClick() {
-    api.apps.launchApplication(dataCurrentAppIdentifierSubheading);
+    api.apps.launchApplication(stringCurrentAppIdentifierSubheading);
 }
 
 
 function onWeatherClick() {
-    api.apps.launchApplication('com.apple.weather');
+    api.apps.launchApplication(stringWeatherAppIdentifier);
 }
 
 /**********************/
@@ -154,7 +157,7 @@ function updateReminder() {
         }
     }
 
-    return [timestamp, stringHeading, stringSubheading, imgReminderAsset, false, true, idReminder, idReminder];
+    return [timestamp, stringHeading, stringSubheading, imgReminderAsset, false, true, stringRemindersAppIdentifier, stringRemindersAppIdentifier];
 }
 
 function updateCalendar() {
@@ -212,7 +215,7 @@ function updateCalendar() {
         }
     }
 
-    return [intTimestamp, stringHeading, stringSubheading, imgCalAsset, false, true, idCal, idCal];
+    return [intTimestamp, stringHeading, stringSubheading, imgCalAsset, false, true, stringCalendarAppIdentifier, stringCalendarAppIdentifier];
 }
 
 function updateDefault() {
@@ -221,13 +224,13 @@ function updateDefault() {
     let stringHeading = weekdays[dateToday.getDay()] + ', ' + monthText + ' ' + dateToday.getDate();
     let stringSubheading = '';
     let imgAsset = 'none';
-    let idAppToOpen = idCal;
+    let idAppToOpen = stringCalendarAppIdentifier;
 
     if (shouldShowNowPlaying) {
         if (dataMusicLatest !== null) {
             if (!dataMusicLatest.isStopped && dataMusicLatest.isPlaying) {
                 idAppToOpen = dataMusicLatest.nowPlayingApplication.identifier;
-                
+
                 switch (idAppToOpen) {
                     case 'com.spotify.client':
                         imgAsset = imgSpotifyAsset;
@@ -252,7 +255,7 @@ function updateDefault() {
     }
 
 
-    return [-1, stringHeading, stringSubheading, imgAsset, true, false, idCal, idAppToOpen];
+    return [-1, stringHeading, stringSubheading, imgAsset, true, false, stringCalendarAppIdentifier, idAppToOpen];
 }
 
 /********************/
@@ -281,8 +284,8 @@ function setSubheadingImage(assetIn) {
 }
 
 function setAppToOpen(idForHeadingIn, idForSubheadingIn) {
-    dataCurrentAppIdentifierHeading = idForHeadingIn;
-    dataCurrentAppIdentifierSubheading = idForSubheadingIn;
+    stringCurrentAppIdentifierHeading = idForHeadingIn;
+    stringCurrentAppIdentifierSubheading = idForSubheadingIn;
 }
 
 function setDisplayForElement(elementIn, displayIn) {
@@ -310,6 +313,12 @@ function applyConfiguration() {
     shouldShowReminders = config.shouldShowReminders;
     shouldShowTimeUntilEvent = config.shouldShowTimeUntilEvent;
     shouldUse24HourClock = config.shouldUse24HourClock;
+
+    stringCalendarAppIdentifier = config.stringOverrideCalendarAppID;
+    stringRemindersAppIdentifier = config.stringOverrideRemindersAppID;
+    stringWeatherAppIdentifier = config.stringOverrideWeatherAppID;
+
+    setAppToOpen(stringCalendarAppIdentifier, stringCalendarAppIdentifier);
 }
 
 function formatPluralSingular(intNumberIn, stringTextIn) {

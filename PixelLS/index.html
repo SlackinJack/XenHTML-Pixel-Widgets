@@ -6,15 +6,18 @@
     </head>
 
     <body onload="onLoad()">
-        <div class ="classHeading">
+        <div class="classHeading" onclick="onHeadingClick()">
             <p id="pClock"></p>
         </div>
 
-        <div class ="classSubheading">
-            <div id ="divSubheading">
-                <p id="pSubheading"></p>
-                <img id="imgWeatherIconSubheading" xui-src="'xui://resource/default/weather/%s.svg' | inject weather.now.condition.code" />
-                <p id ="pTempSubheading"> {weather.now.temperature.current}&deg;{weather.units.temperature}</p>
+        <div class="classSubheading">
+            <div id="divSubheading">
+                <p id="pSubheading" onclick="onSubheadingClick()"></p>
+
+                <div id="divSubheadingWeather" onclick="onWeatherClick()">
+                    <img id="imgWeatherIconSubheading" xui-src="'xui://resource/default/weather/%s.svg' | inject weather.now.condition.code"/>
+                    <p id="pTempSubheading">{weather.now.temperature.current}&deg;{weather.units.temperature}</p>
+                </div>
             </div>
         </div>
     </body>

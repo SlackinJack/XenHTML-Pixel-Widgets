@@ -1,17 +1,22 @@
 // Booleans
-var shouldAbbreviateDate;
-var shouldAbbreviateMonth;
-var shouldUse24HourClock;
-var shouldAddLeadingZeroToHours;
+let shouldAbbreviateDate;
+let shouldAbbreviateMonth;
+let shouldUse24HourClock;
+let shouldAddLeadingZeroToHours;
+
+// Data
+
+// Strings
+let stringCalendarAppIdentifier;
+let stringClockAppIdentifier;
+let stringWeatherAppIdentifier;
 
 // Constants
-const weekdaysShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 /**********************/
-/******** Main ********/
+/***** Main Funcs *****/
 /**********************/
 
 function onLoad() {
@@ -20,19 +25,33 @@ function onLoad() {
     setInterval(doUpdates, 1000);
 }
 
+function onHeadingClick() {
+    api.apps.launchApplication(stringClockAppIdentifier);
+}
+
+function onSubheadingClick() {
+    api.apps.launchApplication(stringCalendarAppIdentifier);
+}
+
+
+function onWeatherClick() {
+    api.apps.launchApplication(stringWeatherAppIdentifier);
+}
+
 /**********************/
 /****** Updaters ******/
 /**********************/
 
 function doUpdates() {
     const dateToday = new Date();
+    const theWeekday = weekdays[dateToday.getMonth()];
+    const theMonth = months[dateToday.getMonth()];
 
-    var textHeading = formatTime(dateToday);
+    let textHeading = formatTime(dateToday);
+    let textSubheading = (shouldAbbreviateDate ? truncateStringToLength(theWeekday, 3) : theWeekday) + ', ' +
+                         (shouldAbbreviateMonth ? truncateStringToLength(theMonth, 3) : theMonth) + ' ' + dateToday.getDate();
+
     setInnerTextForElement('pClock', textHeading);
-
-    var textSubheading = (shouldAbbreviateDate ? weekdaysShort[dateToday.getDay()] : weekdays[dateToday.getDay()]) + ', ' +
-            (shouldAbbreviateMonth ? monthsShort[dateToday.getMonth()] : months[dateToday.getMonth()]) + ' ' + dateToday.getDate();
-
     setInnerTextForElement('pSubheading', textSubheading);
 }
 
@@ -45,11 +64,15 @@ function applyConfiguration() {
     shouldAbbreviateDate = config.shouldAbbreviateDate;
     shouldAbbreviateMonth = config.shouldAbbreviateMonth;
     shouldAddLeadingZeroToHours = config.shouldAddLeadingZeroToHours;
+    
+    stringCalendarAppIdentifier = config.stringOverrideCalendarAppID;
+    stringClockAppIdentifier = config.stringOverrideClockAppID;
+    stringWeatherAppIdentifier = config.stringOverrideWeatherAppID;
 }
 
 function formatTime(dateIn) {
-    var hour = dateIn.getHours();
-    var min = dateIn.getMinutes();
+    let hour = dateIn.getHours();
+    let min = dateIn.getMinutes();
 
     if (min < 10) {
         min = "0" + min;
@@ -72,4 +95,14 @@ function formatTime(dateIn) {
 
 function setInnerTextForElement(elementIn, innerTextIn) {
     document.getElementById(elementIn).innerText = innerTextIn;
+}
+
+function truncateStringToLength(stringIn, intLengthIn) {
+    let stringOutput = '';
+
+    for (let i = 0; i < intLengthIn; i++) {
+        stringOutput = stringOutput + stringIn.charAt(i);
+    }
+
+    return stringOutput;
 }
