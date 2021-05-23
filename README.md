@@ -2,7 +2,7 @@
 
 **Working: Most likely**
 
-Ports of the Google Pixel lockscreen clock and "At a Glance" widget to XenHTML. Includes basic locale settings.
+Ports of the Google Pixel lockscreen clock and "At a Glance" widget to XenHTML.
 
 **Installation:**
 Copy project folders to */private/var/mobile/Library/Widgets/Universal* on your iDevice or anywhere else XenHTML can see it.
