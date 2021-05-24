@@ -29,13 +29,18 @@ body {
     font-size: 24px;
 }
 
+#pHeading {
+    padding-right: 3px;
+}
+
 #pSeparator {
-    padding: 0px 8px;
+    padding: 0 3px;
 }
 
 #imgWeatherIcon {
     position: relative;
     bottom: -4px;
+    padding-left: 2px;
     padding-right: 4px;
     height: 24px;
     width: 24px;
@@ -61,13 +66,19 @@ body {
     width: 26px;
 }
 
-#pSeparatorSubheading {
-    padding: 0px 5px;
+#pSubheading {
+    padding-right: 1px;
 }
+
+#pSeparatorSubheading {
+    padding: 0 1px;
+}
+
 
 #imgWeatherIconSubheading {
     position: relative;
     bottom: -2px;
+    padding-left: 1px;
     padding-right: 2px;
     height: 16px;
     width: 16px;

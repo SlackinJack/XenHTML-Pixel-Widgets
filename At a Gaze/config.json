@@ -69,12 +69,6 @@
         },
         {
             "type": "switch",
-            "default": false,
-            "key": "shouldUse24HourClock",
-            "text": "Use 24-Hour Time For Events"
-        },
-        {
-            "type": "switch",
             "default": true,
             "key": "shouldAbbreviateMonth",
             "text": "Abbreviate Months"
@@ -84,6 +78,18 @@
             "default": true,
             "key": "shouldAddLeadingZeroToHours",
             "text": "Add A Leading Zero To Hours"
+        },
+        {
+            "type": "switch",
+            "default": true,
+            "key": "shouldShowSeparators",
+            "text": "Show Separators"
+        },
+        {
+            "type": "switch",
+            "default": false,
+            "key": "shouldUse24HourClock",
+            "text": "Use 24-Hour Time For Events"
         },
         {
             "type": "title",

@@ -6,6 +6,7 @@ let shouldShowEvents;
 let shouldShowNowPlaying;
 let shouldShowOverdueReminders;
 let shouldShowReminders;
+let shouldShowSeparators;
 let shouldShowTimeUntilEvent;
 let shouldUse24HourClock;
 
@@ -264,13 +265,13 @@ function updateDefault() {
 
 function setHeadingString(stringHeadingIn, shouldShowWeather) {
     setDisplayForElement('divCalendarAndWeather', shouldShowWeather ? 'initial' : 'none');
-    setDisplayForElement('pSeparator', shouldShowWeather ? 'initial' : 'none');
+    setDisplayForElement('pSeparator', shouldShowWeather && shouldShowSeparators ? 'initial' : 'none');
     setInnerTextForElement('pHeading', stringHeadingIn);
 }
 
 function setSubheadingString(stringSubheadingIn, shouldShowWeather) {
     setDisplayForElement('divSubheadingWeather', shouldShowWeather ? 'initial' : 'none');
-    setDisplayForElement('pSeparatorSubheading', shouldShowWeather ? 'initial' : 'none');
+    setDisplayForElement('pSeparatorSubheading', shouldShowWeather && shouldShowSeparators ? 'initial' : 'none');
     setInnerTextForElement('pSubheading', stringSubheadingIn);
 }
 
@@ -311,6 +312,7 @@ function applyConfiguration() {
     shouldShowNowPlaying = config.shouldShowNowPlaying;
     shouldShowOverdueReminders = config.shouldShowOverdueReminders;
     shouldShowReminders = config.shouldShowReminders;
+    shouldShowSeparators = config.shouldShowSeparators;
     shouldShowTimeUntilEvent = config.shouldShowTimeUntilEvent;
     shouldUse24HourClock = config.shouldUse24HourClock;
 
