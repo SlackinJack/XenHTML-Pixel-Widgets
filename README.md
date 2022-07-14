@@ -5,6 +5,11 @@
 Ports of the Google Pixel lockscreen clock and "At a Glance" widget to XenHTML.
 
 **Installation:**
+
+Check Releases for .deb, alternatively, follow the instructions below:
+
+
+
 Copy project folders to any of the following locations:
 
 */private/var/mobile/Library/Widgets/Backgrounds*
@@ -14,5 +19,3 @@ Copy project folders to any of the following locations:
 */private/var/mobile/Library/Widgets/Lockscreen*
 
 */private/var/mobile/Library/Widgets/Universal*
-
-(Might consider packaging into a .deb later. For now, it is not a priority in any shape or form.)
