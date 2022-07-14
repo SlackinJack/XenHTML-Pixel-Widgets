@@ -44,7 +44,7 @@ function onWeatherClick() {
 
 function doUpdates() {
     const dateToday = new Date();
-    const theWeekday = weekdays[dateToday.getMonth()];
+    const theWeekday = weekdays[dateToday.getDay()];
     const theMonth = months[dateToday.getMonth()];
 
     let textHeading = formatTime(dateToday);
