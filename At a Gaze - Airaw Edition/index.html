@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script type="text/javascript">
+            function date() {
+                months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                dateToday = new Date();
+                setInnerHTML('pHeading', weekdays[dateToday.getDay()] + ', ' + months[dateToday.getMonth()] + ' ' + dateToday.getDate());
+            }
+
+            function mainUpdate(type) {
+                date();
+
+                switch (type) {
+                    case "CarPlay":
+                        //pageIndex
+                        break;
+                    case "battery":
+                        //batteryPercent
+                        //batteryCharging
+                        //batteryLowPowerMode
+                        break;
+                    case "statusbar":
+                        //signalBars
+                        //signalName
+                        //wifiBars
+                        //wifiName
+                        //signalNetworkType
+                        break;
+                    case "system":
+                        //deviceName
+                        //deviceType
+                        //systemVersion
+                        //ipAddress
+                        //ramFree
+                        //ramUsed
+                        //ramTotal
+                        break;
+                    case "music":
+                        //artist
+                        //album
+                        //title
+                        //currentDuration
+                        //currentElapsedTime
+                        //isplaying
+                        //Artwork
+                        if (isplaying) {
+                            document.getElementById('divSubheading').style.display = 'initial';
+                            setImageSRC('imgSubheading', 'assets/icons/playing.png');
+                            setInnerHTML('pSubheading', truncateStringToLength((artist + ' - ' + title), 40, true));
+                        } else {
+                            document.getElementById('divSubheading').style.display = 'none';
+                            setImageSRC('imgSubheading', '');
+                            setInnerHTML('pSubheading', '');
+                        }
+                            
+                        break;
+                    case "weather":
+                        //weather.temperature
+                        //weather.conditions
+                        //weather.location
+                        //weather.conditioncode
+                        //weather.hightemperature
+                        //weather.lowtemperature
+                        //weather.sunrise
+                        //weather.sunset
+                        setImageSRC('imgWeatherIcon', 'assets/weather/' + weather.conditioncode + '.svg');
+                        setInnerHTML('pTemp', (weather.temperature + 'C'));
+                        break;
+                }
+            }
+
+            function setInnerHTML(id, input) {
+                document.getElementById(id).innerHTML = input;
+            }
+
+            function setImageSRC(id, input) {
+                document.getElementById(id).src = input;
+            }
+
+            function truncateStringToLength(stringIn, intLengthIn, shouldAddEllipsis) {
+                let stringOutput = '';
+                let canAddEllipsis = shouldAddEllipsis;
+                let isLastCharacterSpace = false;
+
+                if (shouldAddEllipsis && stringIn.length <= intLengthIn) {
+                    canAddEllipsis = false;
+                }
+
+                for (let i = 0; i < intLengthIn; i++) {
+                    stringOutput = stringOutput + stringIn.charAt(i);
+
+                    if (i === (intLengthIn - 1)) {
+                        isLastCharacterSpace = (stringIn.charAt(i) === ' '.charAt(0));
+                    }
+                }
+
+                return stringOutput + (isLastCharacterSpace ? '' : ' ') + (canAddEllipsis ? '...' : '');
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="classHeading">
+            <p id="pHeading"></p>
+            <p id="pSeparator">|</p>
+            <img id="imgWeatherIcon"/>
+            <p id="pTemp"></p>
+        </div>
+
+        <div class="classSubheading">
+            <div id="divSubheading">
+                    <img id="imgSubheading"/>
+                    <p id="pSubheading"></p>
+            </div>
+        </div>
+    </body>
+</html>
