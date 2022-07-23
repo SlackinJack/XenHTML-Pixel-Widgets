@@ -13,7 +13,7 @@
         },
         {
             "type": "number",
-            "default": "10",
+            "default": "2",
             "key": "intUpdateFreq",
             "text": "Update Every ___ Seconds"
         },
