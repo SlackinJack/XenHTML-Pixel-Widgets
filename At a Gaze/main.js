@@ -133,8 +133,13 @@ function updateReminder() {
                         }
                     } else {
                         if (theReminder.due <= timeCurrentWithOffset.getTime()) {
-                            nearestReminder = theReminder;
-                            break;
+                            if (nearestReminder != null) {
+                                if (theReminder.due < nearestReminder.due) {
+                                    nearestReminder = theReminder;
+                                }
+                            } else {
+                                nearestReminder = theReminder;
+                            }
                         }
                     }
                 }
